@@ -6,3 +6,4 @@ __pycache__/
 
 # Model files come from the GitHub Release (scripts/download_model.py), not from git
 models/
+example_request.json
