@@ -1,0 +1,4 @@
+# What you need to DEVELOP and TEST (laptop and CI): everything above, plus test tools.
+-r requirements.txt
+pytest==8.4.2
+httpx2==2.16.0

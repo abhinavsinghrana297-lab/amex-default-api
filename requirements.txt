@@ -1,4 +1,5 @@
-# Model and features: same versions as the Kaggle environment that trained the model
+# What the API needs to RUN (this is all the Docker image installs).
+# Model and features: same versions as the Kaggle environment that trained the model.
 polars==1.35.2
 lightgbm==4.6.0
 numpy==2.1.3
@@ -6,7 +7,3 @@ numpy==2.1.3
 # Web API
 fastapi==0.162.0
 uvicorn==0.54.0
-
-# Testing
-pytest==8.4.2
-httpx2==2.16.0
