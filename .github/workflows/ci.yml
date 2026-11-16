@@ -72,3 +72,17 @@ jobs:
           docker tag "$IMAGE:${{ github.sha }}" "$IMAGE:latest"
           docker push "$IMAGE:${{ github.sha }}"
           docker push "$IMAGE:latest"
+
+      # Continuous deployment: ask Render to pull the image that was just published.
+      # The hook URL is a secret (repo Settings -> Secrets and variables -> Actions -> RENDER_DEPLOY_HOOK).
+      - name: Redeploy the live service on Render
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK" ]; then
+            curl -fsS "$RENDER_DEPLOY_HOOK" > /dev/null
+            echo "redeploy triggered"
+          else
+            echo "no deploy hook set, skipping"
+          fi
